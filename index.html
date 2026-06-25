@@ -7,97 +7,59 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#02050e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg: #02050e;
-  --panel: #050d1c;
-  --panel2: #07112a;
-  --border: #0c3a6e;
-  --border2: #1a5aaa;
-  --glow: #1a7fff;
-  --glow2: #00e5ff;
-  --text: #c8e8ff;
-  --muted: #4a7aaa;
-  --gold: #ffd700;
-  --purple: #9b59ff;
-  --green: #00ff88;
-  --red: #ff3860;
-  --amber: #ffaa00;
-  --mono: 'Share Tech Mono', monospace;
-  --display: 'Orbitron', monospace;
+  --bg: #02050e; --panel: #050d1c; --panel2: #07112a; --panel3: #0a1a38;
+  --border: #0c3a6e; --border2: #1a5aaa; --glow: #1a7fff; --glow2: #00e5ff;
+  --text: #c8e8ff; --muted: #4a7aaa; --gold: #ffd700; --purple: #9b59ff;
+  --green: #00ff88; --red: #ff3860; --amber: #ffaa00;
+  --mono: 'Share Tech Mono', monospace; --display: 'Orbitron', monospace;
 }
-
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--display);
-  min-height: 100vh;
-  overflow-x: hidden;
+  background: var(--bg); color: var(--text); font-family: var(--display);
+  min-height: 100vh; overflow-x: hidden;
 }
-
-/* SCANLINES */
 body::before {
-  content: '';
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  content: ''; position: fixed; inset: 0;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,150,255,0.012) 2px, rgba(0,150,255,0.012) 4px);
   pointer-events: none; z-index: 999;
 }
-
-/* AMBIENT GLOW */
 body::after {
-  content: '';
-  position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+  content: ''; position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
   width: 800px; height: 400px;
   background: radial-gradient(ellipse, rgba(26,127,255,0.06) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
-
 .wrapper {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 16px 60px;
+  max-width: 860px; margin: 0 auto; padding: 0 16px 60px;
   position: relative; z-index: 1;
 }
-
-/* ── HEADER ── */
 .sys-header {
-  text-align: center;
-  padding: 2rem 0 1.5rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-  position: relative;
+  text-align: center; padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; position: relative;
 }
-
 .sys-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 20%; right: 20%;
-  height: 1px;
+  content: ''; position: absolute; bottom: 0; left: 20%; right: 20%; height: 1px;
   background: linear-gradient(90deg, transparent, var(--glow), transparent);
 }
-
 .sys-eyebrow {
   font-size: 9px; letter-spacing: 5px; color: var(--glow2);
   text-shadow: 0 0 10px var(--glow2); margin-bottom: 0.5rem;
 }
-
 .sys-name {
-  font-size: clamp(20px, 5vw, 30px);
-  font-weight: 900; color: #fff; letter-spacing: 3px;
+  font-size: clamp(20px, 5vw, 30px); font-weight: 900; color: #fff; letter-spacing: 3px;
   text-shadow: 0 0 30px var(--glow), 0 0 60px rgba(26,127,255,0.3);
 }
-
 .sys-rank {
-  display: inline-block; margin-top: 0.5rem;
-  padding: 4px 18px;
+  display: inline-block; margin-top: 0.5rem; padding: 4px 18px;
   border: 1px solid var(--purple); color: var(--purple);
-  font-size: 10px; letter-spacing: 4px;
-  text-shadow: 0 0 10px var(--purple);
+  font-size: 10px; letter-spacing: 4px; text-shadow: 0 0 10px var(--purple);
 }
-
-/* ── XP BAR ── */
 .xp-row {
   display: flex; align-items: center; gap: 12px;
   background: var(--panel); border: 1px solid var(--border);
@@ -106,22 +68,14 @@ body::after {
 .xp-label { font-size: 8px; letter-spacing: 3px; color: var(--muted); flex-shrink: 0; }
 .xp-track { flex: 1; height: 8px; background: #030814; border: 1px solid var(--border); position: relative; overflow: hidden; }
 .xp-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4400aa, var(--purple), var(--glow2));
-  box-shadow: 0 0 12px var(--purple);
-  transition: width 1.4s cubic-bezier(0.4,0,0.2,1);
-  width: 0%;
+  height: 100%; background: linear-gradient(90deg, #4400aa, var(--purple), var(--glow2));
+  box-shadow: 0 0 12px var(--purple); transition: width 1.4s cubic-bezier(0.4,0,0.2,1); width: 0%;
 }
 .xp-val { font-size: 8px; color: var(--purple); letter-spacing: 1px; flex-shrink: 0; text-shadow: 0 0 8px var(--purple); min-width: 90px; text-align: right; }
-
-/* ── STAT GRID ── */
 .stat-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px; margin-bottom: 1.5rem;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 1.5rem;
 }
 @media(min-width:600px){ .stat-grid { grid-template-columns: repeat(6,1fr); } }
-
 .stat-card {
   background: var(--panel); border: 1px solid var(--border);
   padding: 10px 6px; text-align: center; position: relative; overflow: hidden;
@@ -133,70 +87,69 @@ body::after {
 .stat-label { font-size: 7px; letter-spacing: 2px; color: var(--muted); margin-bottom: 4px; }
 .stat-val { font-size: 22px; font-weight: 700; color: var(--glow2); text-shadow: 0 0 10px var(--glow2); line-height: 1; }
 .stat-sub { font-size: 6px; color: var(--muted); margin-top: 3px; letter-spacing: 1px; }
-
-/* ── NAV ── */
 .sys-nav {
   display: flex; gap: 4px; margin-bottom: 1.25rem;
   border-bottom: 1px solid var(--border); padding-bottom: 0;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
+.sys-nav::-webkit-scrollbar { display: none; }
 .nav-btn {
   background: transparent; border: none; border-bottom: 2px solid transparent;
   color: var(--muted); font-family: var(--display); font-size: 8px;
   letter-spacing: 2px; padding: 8px 14px 10px; cursor: pointer;
   text-transform: uppercase; transition: all 0.15s;
-  position: relative; bottom: -1px;
+  position: relative; bottom: -1px; white-space: nowrap; flex-shrink: 0;
 }
 .nav-btn:hover { color: var(--glow2); }
 .nav-btn.active { color: var(--glow2); border-bottom-color: var(--glow); text-shadow: 0 0 8px var(--glow2); }
-
-/* ── PANELS ── */
 .panel { display: none; }
 .panel.shown { display: block; }
-
-/* ── SECTION TITLE ── */
 .section-title {
   font-size: 8px; letter-spacing: 4px; color: var(--muted);
   border-bottom: 1px solid var(--border); padding-bottom: 6px;
-  margin-bottom: 1rem; margin-top: 1.25rem;
-  text-transform: uppercase;
+  margin-bottom: 1rem; margin-top: 1.25rem; text-transform: uppercase;
 }
 .section-title:first-child { margin-top: 0; }
-
-/* ── NOTIFICATION ── */
 .sys-notif {
   background: rgba(0,20,50,0.95); border: 1px solid var(--glow);
   padding: 12px 16px; margin-bottom: 1.25rem;
   box-shadow: 0 0 25px rgba(26,127,255,0.15), inset 0 0 20px rgba(26,127,255,0.03);
-  position: relative;
+  position: relative; animation: pulse-border 2.5s ease-in-out infinite;
 }
-.notif-head { font-size: 8px; letter-spacing: 4px; color: var(--glow2); margin-bottom: 6px; text-shadow: 0 0 8px var(--glow2); }
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 15px rgba(26,127,255,0.15), inset 0 0 20px rgba(26,127,255,0.03); }
+  50% { box-shadow: 0 0 35px rgba(26,127,255,0.35), inset 0 0 20px rgba(26,127,255,0.06); }
+}
+.notif-head { font-size: 8px; letter-spacing: 4px; color: var(--glow2); margin-bottom: 6px; text-shadow: 0 0 8px var(--glow2); display: flex; justify-content: space-between; align-items: center; }
 .notif-text { font-family: var(--mono); font-size: 11px; color: #fff; line-height: 1.7; }
-
-/* ── QUEST ── */
+.notif-dismiss {
+  background: transparent; border: 1px solid var(--red); color: var(--red);
+  font-family: var(--display); font-size: 7px; letter-spacing: 1px;
+  padding: 2px 8px; cursor: pointer; text-transform: uppercase; transition: all 0.15s;
+}
+.notif-dismiss:hover { background: rgba(255,56,96,0.1); }
 .quest-group { margin-bottom: 1.5rem; }
-
 .quest {
   background: var(--panel); border: 1px solid var(--border);
-  border-left: 3px solid transparent;
-  padding: 10px 12px; margin-bottom: 6px;
+  border-left: 3px solid transparent; padding: 10px 12px; margin-bottom: 6px;
   display: flex; align-items: flex-start; gap: 10px;
-  transition: background 0.15s, border-color 0.15s;
+  transition: background 0.15s, border-color 0.15s, transform 0.2s, box-shadow 0.2s;
   position: relative;
 }
-.quest:hover { background: var(--panel2); }
-.quest.q-danger { border-left-color: var(--red); }
+.quest:hover { background: var(--panel2); transform: translateX(4px); box-shadow: -4px 0 12px rgba(0,0,0,0.2); }
+.quest.q-danger { border-left-color: var(--red); background: rgba(255,56,96,0.04); animation: danger-pulse 3s ease-in-out infinite; }
 .quest.q-active { border-left-color: var(--glow); }
 .quest.q-pending { border-left-color: var(--amber); }
 .quest.q-done { border-left-color: var(--green); opacity: 0.6; }
-.quest.q-purple { border-left-color: var(--purple); }
-.quest.q-gold { border-left-color: var(--gold); }
-
+@keyframes danger-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255,56,96,0); }
+  50% { box-shadow: 0 0 12px rgba(255,56,96,0.08); }
+}
 .quest-icon { font-size: 18px; flex-shrink: 0; padding-top: 1px; }
 .quest-body { flex: 1; min-width: 0; }
 .quest-name { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: var(--text); margin-bottom: 3px; }
 .quest-desc { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.5; }
 .quest-meta { display: flex; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-
 .tag {
   font-size: 7px; padding: 2px 7px; border: 1px solid;
   letter-spacing: 1.5px; flex-shrink: 0;
@@ -207,13 +160,8 @@ body::after {
 .tag-green { border-color: var(--green); color: var(--green); }
 .tag-red { border-color: var(--red); color: var(--red); }
 .tag-amber { border-color: var(--amber); color: var(--amber); }
-
-/* ── SKILL BARS ── */
-.skill-bar-row { margin-bottom: 14px; }
-.skill-bar-label {
-  display: flex; justify-content: space-between;
-  font-size: 8px; letter-spacing: 2px; color: var(--muted); margin-bottom: 5px;
-}
+.skill-bar-row { margin-bottom: 14px; position: relative; }
+.skill-bar-label { display: flex; justify-content: space-between; font-size: 8px; letter-spacing: 2px; color: var(--muted); margin-bottom: 5px; }
 .skill-bar-label span:last-child { color: var(--text); }
 .skill-track { height: 6px; background: #030814; border: 1px solid var(--border); position: relative; }
 .skill-fill { height: 100%; position: relative; transition: width 1.4s cubic-bezier(0.4,0,0.2,1); }
@@ -226,25 +174,30 @@ body::after {
 .sf-gold::after { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
 .sf-green { background: linear-gradient(90deg, #004422, var(--green)); }
 .sf-green::after { background: var(--green); box-shadow: 0 0 8px var(--green); }
-
-.skill-mini-grid {
-  display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-top: 1rem;
+.skill-tooltip {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) scale(0.9); background: var(--panel3);
+  border: 1px solid var(--border2); color: var(--text); padding: 6px 12px;
+  border-radius: 6px; font-family: var(--mono); font-size: 10px;
+  white-space: nowrap; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s; z-index: 10;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
 }
-.skill-mini {
-  background: var(--panel); border: 1px solid var(--border); padding: 10px 12px;
+.skill-tooltip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: var(--border2);
 }
+.skill-bar-row:hover .skill-tooltip { opacity: 1; transform: translateX(-50%) scale(1); }
+.skill-mini-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-top: 1rem; }
+.skill-mini { background: var(--panel); border: 1px solid var(--border); padding: 10px 12px; transition: background 0.15s; }
+.skill-mini:hover { background: var(--panel2); }
 .skill-mini-name { font-size: 8px; letter-spacing: 1.5px; color: var(--text); margin-bottom: 5px; }
 .skill-mini-track { height: 3px; background: #030814; margin-bottom: 4px; }
 .skill-mini-fill { height: 100%; }
 .skill-mini-lvl { font-size: 7px; color: var(--muted); letter-spacing: 1px; }
-
-/* ── DAILY ── */
 .daily-item {
-  background: var(--panel); border: 1px solid var(--border);
-  padding: 10px 14px; margin-bottom: 6px;
-  display: flex; align-items: center; gap: 12px;
-  cursor: pointer; transition: background 0.15s;
-  user-select: none;
+  background: var(--panel); border: 1px solid var(--border); padding: 10px 14px; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background 0.15s; user-select: none;
 }
 .daily-item:hover { background: var(--panel2); }
 .daily-check {
@@ -258,38 +211,31 @@ body::after {
 .daily-item.done .daily-text { color: var(--muted); text-decoration: line-through; }
 .daily-xp { font-size: 8px; color: var(--purple); letter-spacing: 1px; text-shadow: 0 0 6px var(--purple); flex-shrink: 0; }
 .daily-track-tag { font-size: 7px; border: 1px solid var(--border); padding: 2px 6px; letter-spacing: 1px; color: var(--muted); flex-shrink: 0; }
-
 .daily-section { font-size: 8px; letter-spacing: 3px; color: var(--purple); margin: 1rem 0 8px; }
-
 .daily-reset-btn {
-  display: block; width: 100%; margin-top: 1rem;
-  background: transparent; border: 1px solid var(--border);
-  color: var(--muted); font-family: var(--display); font-size: 8px;
-  letter-spacing: 2px; padding: 10px; cursor: pointer; text-transform: uppercase;
-  transition: all 0.15s;
+  display: block; width: 100%; margin-top: 1rem; background: transparent;
+  border: 1px solid var(--border); color: var(--muted); font-family: var(--display);
+  font-size: 8px; letter-spacing: 2px; padding: 10px; cursor: pointer;
+  text-transform: uppercase; transition: all 0.15s;
 }
 .daily-reset-btn:hover { border-color: var(--red); color: var(--red); }
-
-/* ── PROFILE ── */
 .profile-table { width: 100%; font-size: 9px; letter-spacing: 1px; border-collapse: collapse; }
 .profile-table td { padding: 8px 0; border-bottom: 1px solid var(--border); }
 .profile-table td:first-child { color: var(--muted); font-size: 8px; letter-spacing: 2px; }
 .profile-table td:last-child { text-align: right; }
-
 .path-card {
   background: var(--panel); border: 1px solid var(--border);
   border-left: 3px solid transparent; padding: 12px 14px; margin-bottom: 8px;
+  transition: background 0.15s, transform 0.2s;
 }
+.path-card:hover { background: var(--panel2); transform: translateX(3px); }
 .path-card.p-blue { border-left-color: var(--glow); }
 .path-card.p-purple { border-left-color: var(--purple); }
 .path-card.p-gold { border-left-color: var(--gold); }
 .path-title { font-size: 9px; letter-spacing: 2px; margin-bottom: 4px; }
 .path-desc { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.5; }
-
-/* ── ADD QUEST ── */
-.add-quest-form {
-  background: var(--panel); border: 1px solid var(--border);
-  padding: 1rem; margin-bottom: 1rem;
+.add-quest-form, .add-notif-form {
+  background: var(--panel); border: 1px solid var(--border); padding: 1rem; margin-bottom: 1rem;
 }
 .form-row { margin-bottom: 10px; }
 .form-label { font-size: 8px; letter-spacing: 2px; color: var(--muted); margin-bottom: 5px; display: block; }
@@ -310,21 +256,13 @@ body::after {
 .sys-btn:hover { background: rgba(26,127,255,0.1); }
 .sys-btn-danger { border-color: var(--red); color: var(--red); text-shadow: none; }
 .sys-btn-danger:hover { background: rgba(255,56,96,0.1); }
-
-/* ── TICKER ── */
 .sys-ticker {
   font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--muted);
   text-align: center; padding: 10px; border-top: 1px solid var(--border);
   margin-top: 2rem; position: relative; overflow: hidden;
 }
-
-/* ── BLINK ── */
-@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
 .blink { animation: blink 2s ease-in-out infinite; }
-
-@keyframes pulse { 0%,100%{box-shadow:0 0 5px var(--glow)}50%{box-shadow:0 0 20px var(--glow)} }
-
-/* ── MODAL ── */
 .modal-backdrop {
   display: none; position: fixed; inset: 0;
   background: rgba(0,0,0,0.8); z-index: 1000;
@@ -338,8 +276,6 @@ body::after {
 }
 .modal-title { font-size: 10px; letter-spacing: 3px; color: var(--glow2); margin-bottom: 1rem; }
 .modal-actions { display: flex; gap: 8px; margin-top: 1rem; justify-content: flex-end; }
-
-/* ── RANK UP TOAST ── */
 .toast {
   position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-80px);
   background: rgba(5,20,50,0.98); border: 1px solid var(--purple);
@@ -349,248 +285,239 @@ body::after {
   box-shadow: 0 0 30px rgba(155,89,255,0.3);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
-
-/* ── RESPONSIVE ── */
+.backup-bar {
+  display: flex; gap: 8px; justify-content: center;
+  margin-bottom: 1rem; padding: 8px; background: var(--panel);
+  border: 1px solid var(--border); flex-wrap: wrap;
+}
+.backup-bar button {
+  background: transparent; border: 1px solid var(--border2); color: var(--muted);
+  font-family: var(--display); font-size: 7px; letter-spacing: 1.5px;
+  padding: 6px 12px; cursor: pointer; text-transform: uppercase; transition: all 0.15s;
+}
+.backup-bar button:hover { border-color: var(--glow); color: var(--glow2); }
+.backup-bar input[type="file"] { display: none; }
+.backup-bar label {
+  background: transparent; border: 1px solid var(--border2); color: var(--muted);
+  font-family: var(--display); font-size: 7px; letter-spacing: 1.5px;
+  padding: 6px 12px; cursor: pointer; text-transform: uppercase;
+  transition: all 0.15s; display: inline-block;
+}
+.backup-bar label:hover { border-color: var(--glow); color: var(--glow2); }
+.streak-display { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.streak-flame { font-size: 14px; }
+.collapsible-header {
+  cursor: pointer; user-select: none; display: flex;
+  justify-content: space-between; align-items: center;
+}
+.collapsible-header::after {
+  content: '▼'; font-size: 8px; color: var(--muted); transition: transform 0.3s;
+}
+.collapsible-header.collapsed::after { transform: rotate(-90deg); }
+.collapsible-content {
+  max-height: 2000px; overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s; opacity: 1;
+}
+.collapsible-content.collapsed { max-height: 0; opacity: 0; }
+.log-entry {
+  background: var(--panel); border: 1px solid var(--border);
+  border-left: 3px solid var(--green); padding: 10px 12px;
+  margin-bottom: 6px; font-family: var(--mono); font-size: 10px;
+  color: var(--text); line-height: 1.5;
+}
+.log-entry .log-date { color: var(--muted); font-size: 8px; letter-spacing: 1px; margin-bottom: 2px; }
+.log-entry .log-action { color: var(--green); }
+.log-empty {
+  font-family: var(--mono); font-size: 10px; color: var(--muted);
+  padding: 8px 0; text-align: center;
+}
 @media(max-width:500px){
   .sys-name { font-size: 18px; letter-spacing: 2px; }
   .nav-btn { font-size: 7px; padding: 8px 8px 10px; letter-spacing: 1px; }
   .stat-val { font-size: 18px; }
+  .backup-bar { flex-wrap: wrap; }
+  .quest { padding: 8px; gap: 6px; }
+  .quest-icon { font-size: 14px; }
+  .quest-name { font-size: 8px; }
+  .quest-desc { font-size: 9px; }
+  .skill-tooltip { font-size: 9px; padding: 4px 8px; }
+}
+@media(max-width:380px){
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-btn { padding: 6px 6px 8px; font-size: 6px; }
+  .xp-val { font-size: 7px; min-width: 70px; }
 }
 </style>
+<base target="_blank">
 </head>
 <body>
 <div class="wrapper">
 
-  <!-- HEADER -->
-  <div class="sys-header">
-    <div class="sys-eyebrow">— system interface v2 —</div>
-    <div class="sys-name">DANIEL HENRY CHARLES</div>
-    <div class="sys-rank" id="rankDisplay">◆ RANK B — RISING HUNTER ◆</div>
+  <div class="backup-bar">
+    <button onclick="SystemSave.export()">💾 Export Backup</button>
+    <label for="importFile">📁 Import Backup</label>
+    <input type="file" id="importFile" accept=".json" onchange="SystemSave.import(this.files[0])">
+    <button onclick="SystemSave.clear()" style="border-color:var(--red);color:var(--red);">🗑 Clear All</button>
   </div>
 
-  <!-- XP BAR -->
+  <div class="sys-header">
+    <div class="sys-eyebrow">— system interface v2.1 —</div>
+    <div class="sys-name">DANIEL HENRY CHARLES</div>
+    <div class="sys-rank" id="rankDisplay">◆ RANK E — AWAKENED ◆</div>
+  </div>
+
   <div class="xp-row">
     <div class="xp-label">XP</div>
     <div class="xp-track"><div class="xp-fill" id="xpFill"></div></div>
     <div class="xp-val" id="xpVal">— / —</div>
   </div>
 
-  <!-- STATS -->
   <div class="stat-grid">
-    <div class="stat-card">
-      <div class="stat-label">INTELLECT</div>
-      <div class="stat-val">94</div>
-      <div class="stat-sub">BSc + 7yr exp</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">ADAPTABILITY</div>
-      <div class="stat-val">88</div>
-      <div class="stat-sub">3 parallel tracks</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">APPLICATIONS</div>
-      <div class="stat-val" id="statApps">5</div>
-      <div class="stat-sub">active hunts</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">INTERVIEWS</div>
-      <div class="stat-val">2</div>
-      <div class="stat-sub">gates entered</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">PORTFOLIO</div>
-      <div class="stat-val">3</div>
-      <div class="stat-sub">projects forged</div>
-    </div>
+    <div class="stat-card"><div class="stat-label">INTELLECT</div><div class="stat-val">94</div><div class="stat-sub">BSc + 7yr exp</div></div>
+    <div class="stat-card"><div class="stat-label">ADAPTABILITY</div><div class="stat-val">88</div><div class="stat-sub">3 parallel tracks</div></div>
+    <div class="stat-card"><div class="stat-label">APPLICATIONS</div><div class="stat-val" id="statApps">5</div><div class="stat-sub">active hunts</div></div>
+    <div class="stat-card"><div class="stat-label">INTERVIEWS</div><div class="stat-val">2</div><div class="stat-sub">gates entered</div></div>
+    <div class="stat-card"><div class="stat-label">PORTFOLIO</div><div class="stat-val">3</div><div class="stat-sub">projects forged</div></div>
     <div class="stat-card">
       <div class="stat-label">DAILY STREAK</div>
-      <div class="stat-val"><span class="blink">●</span></div>
+      <div class="stat-val"><span class="streak-display"><span class="streak-flame" id="streakFlame">🔥</span></span></div>
       <div class="stat-sub" id="streakSub">loading...</div>
     </div>
   </div>
 
-  <!-- NAV -->
   <div class="sys-nav">
     <button class="nav-btn active" onclick="showPanel('quests',this)">Quests</button>
     <button class="nav-btn" onclick="showPanel('daily',this)">Daily</button>
     <button class="nav-btn" onclick="showPanel('skills',this)">Skills</button>
+    <button class="nav-btn" onclick="showPanel('log',this)">Log</button>
     <button class="nav-btn" onclick="showPanel('profile',this)">Profile</button>
   </div>
 
-  <!-- ══════ PANEL: QUESTS ══════ -->
   <div id="panel-quests" class="panel shown">
-
-    <div class="sys-notif">
-      <div class="notif-head">⬡ SYSTEM NOTIFICATION — PRIORITY ALERT</div>
-      <div class="notif-text">A retake window has opened.<br>
-[ English Language Specialist — micro1 ] → Target: July 22<br>
-Gaps to close: overlap handling · diarization depth · error severity · batch rollups<br>
-<span style="color:var(--amber)">⚠ The gate closes. Prepare accordingly.</span></div>
+    <div id="notif-container">
+      <div class="sys-notif" data-notif-id="n1">
+        <div class="notif-head">
+          <span>⬡ SYSTEM NOTIFICATION — PRIORITY ALERT</span>
+          <button class="notif-dismiss" onclick="dismissNotif('n1')">Dismiss</button>
+        </div>
+        <div class="notif-text">A retake window has opened.<br>[ English Language Specialist — micro1 ] → Target: July 22<br>Gaps to close: overlap handling · diarization depth · error severity · batch rollups<br><span style="color:var(--amber)">⚠ The gate closes. Prepare accordingly.</span></div>
+      </div>
     </div>
 
-    <div class="section-title">◈ danger quests — act now</div>
-    <div class="quest-group" id="quests-danger"></div>
-
-    <div class="section-title">◈ active quests — in progress</div>
-    <div class="quest-group" id="quests-active"></div>
-
-    <div class="section-title">◈ pending quests — awaiting trigger</div>
-    <div class="quest-group" id="quests-pending"></div>
-
-    <div class="section-title">◈ completed quests</div>
-    <div class="quest-group" id="quests-done"></div>
-
-    <div class="section-title">◈ add custom quest</div>
-    <div class="add-quest-form">
-      <div class="form-row">
-        <label class="form-label">Quest Name</label>
-        <input class="sys-input" id="newQuestName" placeholder="Name this mission...">
+    <div class="section-title collapsible-header" onclick="toggleSection(this)">◈ add system alert</div>
+    <div class="collapsible-content collapsed">
+      <div class="add-notif-form">
+        <div class="form-row"><label class="form-label">Alert Title</label><input class="sys-input" id="newNotifTitle" placeholder="e.g. SYSTEM NOTIFICATION"></div>
+        <div class="form-row"><label class="form-label">Alert Message</label><textarea class="sys-textarea" id="newNotifText" placeholder="What should the alert say?"></textarea></div>
+        <button class="sys-btn" onclick="addNotification()">⊕ Post Alert</button>
       </div>
-      <div class="form-row">
-        <label class="form-label">Description</label>
-        <textarea class="sys-textarea" id="newQuestDesc" placeholder="What needs to be done?"></textarea>
+    </div>
+
+    <div class="section-title collapsible-header" onclick="toggleSection(this)">◈ danger quests — act now</div>
+    <div class="collapsible-content"><div class="quest-group" id="quests-danger"></div></div>
+
+    <div class="section-title collapsible-header" onclick="toggleSection(this)">◈ active quests — in progress</div>
+    <div class="collapsible-content"><div class="quest-group" id="quests-active"></div></div>
+
+    <div class="section-title collapsible-header" onclick="toggleSection(this)">◈ pending quests — awaiting trigger</div>
+    <div class="collapsible-content"><div class="quest-group" id="quests-pending"></div></div>
+
+    <div class="section-title collapsible-header" onclick="toggleSection(this)">◈ completed quests</div>
+    <div class="collapsible-content"><div class="quest-group" id="quests-done"></div></div>
+
+    <div class="section-title collapsible-header" onclick="toggleSection(this)">◈ add custom quest</div>
+    <div class="collapsible-content">
+      <div class="add-quest-form">
+        <div class="form-row"><label class="form-label">Quest Name</label><input class="sys-input" id="newQuestName" placeholder="Name this mission..."></div>
+        <div class="form-row"><label class="form-label">Description</label><textarea class="sys-textarea" id="newQuestDesc" placeholder="What needs to be done?"></textarea></div>
+        <div class="form-row" style="display:flex;gap:8px;">
+          <div style="flex:1"><label class="form-label">Status</label><select class="sys-select" id="newQuestStatus"><option value="active">Active</option><option value="pending">Pending</option><option value="danger">Danger</option><option value="done">Done</option></select></div>
+          <div style="flex:1"><label class="form-label">Track</label><select class="sys-select" id="newQuestTrack"><option value="AI QA">AI QA</option><option value="DATA">Data Analytics</option><option value="TEACH">Teaching</option><option value="INFRA">Infrastructure</option><option value="FIELD">Field Work</option><option value="RECRUIT">Recruiting</option><option value="TRAIN">Training</option></select></div>
+          <div style="flex:1"><label class="form-label">Deadline</label><input class="sys-input" id="newQuestDeadline" placeholder="e.g. JUL 22"></div>
+        </div>
+        <button class="sys-btn" onclick="addQuest()">⊕ Register Quest</button>
       </div>
-      <div class="form-row" style="display:flex;gap:8px;">
-        <div style="flex:1">
-          <label class="form-label">Status</label>
-          <select class="sys-select" id="newQuestStatus">
-            <option value="active">Active</option>
-            <option value="pending">Pending</option>
-            <option value="danger">Danger</option>
-            <option value="done">Done</option>
-          </select>
-        </div>
-        <div style="flex:1">
-          <label class="form-label">Track</label>
-          <select class="sys-select" id="newQuestTrack">
-            <option value="AI QA">AI QA</option>
-            <option value="DATA">Data Analytics</option>
-            <option value="TEACH">Teaching</option>
-            <option value="INFRA">Infrastructure</option>
-            <option value="FIELD">Field Work</option>
-            <option value="RECRUIT">Recruiting</option>
-            <option value="TRAIN">Training</option>
-          </select>
-        </div>
-        <div style="flex:1">
-          <label class="form-label">Deadline</label>
-          <input class="sys-input" id="newQuestDeadline" placeholder="e.g. JUL 22">
-        </div>
-      </div>
-      <button class="sys-btn" onclick="addQuest()">⊕ Register Quest</button>
     </div>
   </div>
 
-  <!-- ══════ PANEL: DAILY ══════ -->
   <div id="panel-daily" class="panel">
     <div id="daily-xp-summary" style="background:var(--panel);border:1px solid var(--border);padding:12px 16px;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;">
       <div style="font-size:8px;letter-spacing:2px;color:var(--muted);">TODAY'S XP EARNED</div>
       <div style="font-size:20px;font-weight:700;color:var(--purple);text-shadow:0 0 10px var(--purple);" id="dailyXPEarned">0 XP</div>
     </div>
-
-    <div class="daily-section">— DATA ANALYTICS PATH —</div>
-    <div id="daily-data"></div>
-
-    <div class="daily-section">— AI QUALITY PATH —</div>
-    <div id="daily-ai"></div>
-
-    <div class="daily-section">— TRAINING & APPLICATIONS —</div>
-    <div id="daily-train"></div>
-
-    <div class="daily-section">— PORTFOLIO & FIELD WORK —</div>
-    <div id="daily-portfolio"></div>
-
+    <div class="daily-section">— DATA ANALYTICS PATH —</div><div id="daily-data"></div>
+    <div class="daily-section">— AI QUALITY PATH —</div><div id="daily-ai"></div>
+    <div class="daily-section">— TRAINING & APPLICATIONS —</div><div id="daily-train"></div>
+    <div class="daily-section">— PORTFOLIO & FIELD WORK —</div><div id="daily-portfolio"></div>
     <div style="margin-top:1rem;padding:10px;background:var(--panel);border:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.6;">
       Complete all missions → earn daily bonus XP → rank up faster.<br>
-      Progress is saved automatically in your browser.
+      <span style="color:var(--amber)">⚠ Data saves in browser only. Use Export Backup to keep your progress safe.</span>
     </div>
-
     <button class="daily-reset-btn" onclick="resetDaily()">↺ Reset Daily Missions (new day)</button>
   </div>
 
-  <!-- ══════ PANEL: SKILLS ══════ -->
   <div id="panel-skills" class="panel">
     <div class="section-title">◈ core skill tree</div>
-
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="Science Education" data-current="97" data-max="100">
       <div class="skill-bar-label"><span>SCIENCE EDUCATION</span><span>MAX LVL</span></div>
       <div class="skill-track"><div class="skill-fill sf-blue" style="width:0%" data-target="97"></div></div>
+      <div class="skill-tooltip">97/100 — Mastered · Max Level Reached</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="Academic Operations" data-current="92" data-max="100">
       <div class="skill-bar-label"><span>ACADEMIC OPERATIONS</span><span>92%</span></div>
       <div class="skill-track"><div class="skill-fill sf-blue" style="width:0%" data-target="92"></div></div>
+      <div class="skill-tooltip">92/100 — 8 XP to next level</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="AI Output Evaluation" data-current="65" data-max="100">
       <div class="skill-bar-label"><span>AI OUTPUT EVALUATION</span><span>65%</span></div>
       <div class="skill-track"><div class="skill-fill sf-purple" style="width:0%" data-target="65"></div></div>
+      <div class="skill-tooltip">65/100 — 35 XP to next level</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="Transcription / ASR QA" data-current="58" data-max="100">
       <div class="skill-bar-label"><span>TRANSCRIPTION / ASR QA</span><span>58%</span></div>
       <div class="skill-track"><div class="skill-fill sf-purple" style="width:0%" data-target="58"></div></div>
+      <div class="skill-tooltip">58/100 — 42 XP to next level</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="Data Analytics" data-current="34" data-max="100">
       <div class="skill-bar-label"><span>DATA ANALYTICS</span><span>34%</span></div>
       <div class="skill-track"><div class="skill-fill sf-gold" style="width:0%" data-target="34"></div></div>
+      <div class="skill-tooltip">34/100 — 66 XP to next level</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="IBM SkillsBuild" data-current="41" data-max="100">
       <div class="skill-bar-label"><span>IBM SKILLSBUILD</span><span>41%</span></div>
       <div class="skill-track"><div class="skill-fill sf-green" style="width:0%" data-target="41"></div></div>
+      <div class="skill-tooltip">41/100 — 59 XP to next level</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="McKinsey Forward" data-current="50" data-max="100">
       <div class="skill-bar-label"><span>McKINSEY FORWARD</span><span>50%</span></div>
       <div class="skill-track"><div class="skill-fill sf-green" style="width:0%" data-target="50"></div></div>
+      <div class="skill-tooltip">50/100 — 50 XP to next level</div>
     </div>
-    <div class="skill-bar-row">
+    <div class="skill-bar-row" data-skill="Python / SQL" data-current="12" data-max="100">
       <div class="skill-bar-label"><span>PYTHON / SQL (TARGET)</span><span>12%</span></div>
       <div class="skill-track"><div class="skill-fill sf-gold" style="width:0%" data-target="12"></div></div>
+      <div class="skill-tooltip">12/100 — 88 XP to next level · Just getting started</div>
     </div>
 
     <div class="section-title">◈ special abilities</div>
     <div class="skill-mini-grid">
-      <div class="skill-mini">
-        <div class="skill-mini-name">CURRICULUM DESIGN</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-blue" style="width:90%"></div></div>
-        <div class="skill-mini-lvl">LVL 9 — Pinnacle + Abundance</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">CLAIM VALIDATION</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:75%"></div></div>
-        <div class="skill-mini-lvl">LVL 7 — drilled 5+ sessions</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">DATA INTERPRETATION</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-gold" style="width:70%"></div></div>
-        <div class="skill-mini-lvl">LVL 7 — drilled 8+ scenarios</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">LOGIC PUZZLES</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:72%"></div></div>
-        <div class="skill-mini-lvl">LVL 7 — drilled 5+ puzzles</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">BILINGUAL FR / EN</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-green" style="width:95%"></div></div>
-        <div class="skill-mini-lvl">LVL 9 — Benin advantage</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">PII / REDACTION</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:78%"></div></div>
-        <div class="skill-mini-lvl">LVL 7 — micro1 strength noted</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">SURVEY DESIGN</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-blue" style="width:82%"></div></div>
-        <div class="skill-mini-lvl">LVL 8 — Abundance study built</div>
-      </div>
-      <div class="skill-mini">
-        <div class="skill-mini-name">VIDEO SUMMARIZATION</div>
-        <div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:30%"></div></div>
-        <div class="skill-mini-lvl">LVL 3 — introduced, not drilled</div>
-      </div>
+      <div class="skill-mini"><div class="skill-mini-name">CURRICULUM DESIGN</div><div class="skill-mini-track"><div class="skill-mini-fill sf-blue" style="width:90%"></div></div><div class="skill-mini-lvl">LVL 9 — Pinnacle + Abundance</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">CLAIM VALIDATION</div><div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:75%"></div></div><div class="skill-mini-lvl">LVL 7 — drilled 5+ sessions</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">DATA INTERPRETATION</div><div class="skill-mini-track"><div class="skill-mini-fill sf-gold" style="width:70%"></div></div><div class="skill-mini-lvl">LVL 7 — drilled 8+ scenarios</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">LOGIC PUZZLES</div><div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:72%"></div></div><div class="skill-mini-lvl">LVL 7 — drilled 5+ puzzles</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">BILINGUAL FR / EN</div><div class="skill-mini-track"><div class="skill-mini-fill sf-green" style="width:95%"></div></div><div class="skill-mini-lvl">LVL 9 — Benin advantage</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">PII / REDACTION</div><div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:78%"></div></div><div class="skill-mini-lvl">LVL 7 — micro1 strength noted</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">SURVEY DESIGN</div><div class="skill-mini-track"><div class="skill-mini-fill sf-blue" style="width:82%"></div></div><div class="skill-mini-lvl">LVL 8 — Abundance study built</div></div>
+      <div class="skill-mini"><div class="skill-mini-name">VIDEO SUMMARIZATION</div><div class="skill-mini-track"><div class="skill-mini-fill sf-purple" style="width:30%"></div></div><div class="skill-mini-lvl">LVL 3 — introduced, not drilled</div></div>
     </div>
   </div>
 
-  <!-- ══════ PANEL: PROFILE ══════ -->
+  <div id="panel-log" class="panel">
+    <div class="section-title">◈ activity log</div>
+    <div id="activity-log"><div class="log-empty">— No activity recorded yet —</div></div>
+    <button class="daily-reset-btn" onclick="clearLog()" style="margin-top:1rem;">🗑 Clear Log</button>
+  </div>
+
   <div id="panel-profile" class="panel">
     <div class="section-title">◈ hunter profile</div>
     <div style="background:var(--panel);border:1px solid var(--border);padding:1rem;margin-bottom:1rem;">
@@ -637,13 +564,11 @@ Gaps to close: overlap handling · diarization depth · error severity · batch 
     </div>
   </div>
 
-  <div class="sys-ticker" id="ticker">◈ SYSTEM ACTIVE · COTONOU REGION · RANK B · KEEP ASCENDING ◈</div>
+  <div class="sys-ticker" id="ticker">◈ SYSTEM ACTIVE · COTONOU REGION · RANK E — AWAKENED · KEEP ASCENDING ◈</div>
 </div>
 
-<!-- RANK UP TOAST -->
 <div class="toast" id="toast">⬆ RANK UP DETECTED</div>
 
-<!-- DELETE MODAL -->
 <div class="modal-backdrop" id="deleteModal">
   <div class="modal">
     <div class="modal-title">⚠ CONFIRM QUEST DELETION</div>
@@ -655,36 +580,43 @@ Gaps to close: overlap handling · diarization depth · error severity · batch 
   </div>
 </div>
 
+<div class="modal-backdrop" id="editModal">
+  <div class="modal">
+    <div class="modal-title">✎ EDIT QUEST</div>
+    <div class="form-row"><label class="form-label">Quest Name</label><input class="sys-input" id="editQuestName"></div>
+    <div class="form-row"><label class="form-label">Description</label><textarea class="sys-textarea" id="editQuestDesc"></textarea></div>
+    <div class="form-row" style="display:flex;gap:8px;">
+      <div style="flex:1"><label class="form-label">Status</label><select class="sys-select" id="editQuestStatus"><option value="danger">Danger</option><option value="active">Active</option><option value="pending">Pending</option><option value="done">Done</option></select></div>
+      <div style="flex:1"><label class="form-label">Track</label><select class="sys-select" id="editQuestTrack"><option value="AI QA">AI QA</option><option value="DATA">Data Analytics</option><option value="TEACH">Teaching</option><option value="INFRA">Infrastructure</option><option value="FIELD">Field Work</option><option value="RECRUIT">Recruiting</option><option value="TRAIN">Training</option></select></div>
+      <div style="flex:1"><label class="form-label">Deadline</label><input class="sys-input" id="editQuestDeadline"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="sys-btn" onclick="closeEditModal()">Cancel</button>
+      <button class="sys-btn" onclick="saveQuestEdit()" style="border-color:var(--green);color:var(--green);">Save</button>
+    </div>
+  </div>
+</div>
 <script>
-// ══════════════════════════════
-//  STATE
-// ══════════════════════════════
-
 const RANKS = [
-  {name:'E — AWAKENED',  min:0,    max:500},
-  {name:'D — INITIATE',  min:500,  max:1200},
-  {name:'C — CHALLENGER',min:1200, max:2500},
-  {name:'B — RISING HUNTER', min:2500, max:4500},
-  {name:'A — VETERAN',   min:4500, max:7000},
-  {name:'S — ELITE',     min:7000, max:10000},
+  {name:'E — AWAKENED',min:0,max:500},
+  {name:'D — INITIATE',min:500,max:1200},
+  {name:'C — CHALLENGER',min:1200,max:2500},
+  {name:'B — RISING HUNTER',min:2500,max:4500},
+  {name:'A — VETERAN',min:4500,max:7000},
+  {name:'S — ELITE',min:7000,max:10000},
   {name:'SS — SOVEREIGN',min:10000,max:99999},
 ];
 
 const DEFAULT_QUESTS = [
-  // DANGER
   {id:'q1',status:'danger',name:'Transcription Retake — micro1',desc:'Drill: overlap handling · diarization correction · error severity (minor vs major) · batch rollups · proper noun verification',track:'AI QA',deadline:'JUL 22'},
-  // ACTIVE — AI QA
   {id:'q2',status:'active',name:'Await: Customer Support Analyst Result — micro1',desc:'Interview completed. Written portion uncertain. Monitor email daily.',track:'AI QA',deadline:'PENDING'},
-  // ACTIVE — DATA
   {id:'q3',status:'active',name:'Upload Pinnacle University Semester Data',desc:'Anonymise matric numbers → consistent Student IDs across semesters. Analyse attendance trends + performance patterns + timetable clashes.',track:'DATA',deadline:''},
   {id:'q4',status:'active',name:'Build Data Analytics Portfolio — Project 1',desc:'Pinnacle Uni: semester results analysis. Chart student performance over time. Identify patterns. Export as shareable case study.',track:'DATA',deadline:''},
   {id:'q5',status:'active',name:'IBM SkillsBuild — Complete Data Analytics Path',desc:'Work through remaining modules. Certificate upon completion strengthens CV for data analytics track.',track:'TRAIN',deadline:''},
   {id:'q6',status:'active',name:'Deploy Job Application Tracker on Replit',desc:'Paste App.jsx into Replit. Transfer all 5 application entries. Set overdue alerts. Go live.',track:'INFRA',deadline:''},
-  // ACTIVE — PORTFOLIO
   {id:'q7',status:'active',name:'Secure Abundance School Survey Approval',desc:'Submit proposal. Await principal sign-off. Then distribute JS1–SS3 survey + parental consent notes (EN + FR).',track:'FIELD',deadline:''},
   {id:'q8',status:'active',name:'Portfolio: Parental Involvement Study',desc:'Collect responses. Match names to real scores (5 subjects per student). Anonymise → Student_001. Analyse involvement vs performance.',track:'DATA',deadline:''},
   {id:'q9',status:'active',name:'Portfolio: Recruitment Channel Performance',desc:'Post Magnate International JDs (Jobberman · LinkedIn · Indeed Nigeria). Track applicants by platform. Compare volume + quality. Document findings.',track:'RECRUIT',deadline:''},
-  // PENDING
   {id:'q10',status:'pending',name:'McKinsey Forward — Complete Remaining Modules',desc:'Currently at ~50%. Finish all modules. Credential adds weight to academic operations + business skills profile.',track:'TRAIN',deadline:''},
   {id:'q11',status:'pending',name:'Apply: Online Teaching Platforms',desc:'Target: Preply, Cambly, Outschool, iTalki (science tutoring). Build profile using Online Teaching CV. Start with Physics/Chemistry.',track:'TEACH',deadline:''},
   {id:'q12',status:'pending',name:'Write Cover Letters — All Pending Applications',desc:'Needed: ReviAi Technologies · Turing · micro1 Customer Support · micro1 Transcription. Draft and store.',track:'AI QA',deadline:''},
@@ -692,45 +624,45 @@ const DEFAULT_QUESTS = [
   {id:'q14',status:'pending',name:'Publish Data Portfolio on GitHub or Notion',desc:'Create public-facing portfolio page. Add Pinnacle case study first. Then Abundance study. Link on CV + LinkedIn.',track:'DATA',deadline:''},
   {id:'q15',status:'pending',name:'Video Summarization Drill — micro1 Readiness',desc:'Practice evaluating AI video summaries: accuracy · completeness · proportionality · temporal accuracy. Failure modes: hallucination · omission · misattribution.',track:'AI QA',deadline:''},
   {id:'q16',status:'pending',name:'Update LinkedIn with New Skill Endorsements',desc:'Add: Data Analytics · IBM SkillsBuild · McKinsey Forward · Transcription QA. Request endorsements from colleagues.',track:'INFRA',deadline:''},
-  // DONE
-  {id:'q17',status:'done',name:'Turing — Quality Analyst Multimodality · Applied',desc:'AI Quality CV submitted.',track:'AI QA',deadline:''},
-  {id:'q18',status:'done',name:'VeliBC — Local Tester (Benin Market) · Applied',desc:'iGaming QA role. Cyprus-registered, verified legitimate.',track:'AI QA',deadline:''},
-  {id:'q19',status:'done',name:'Both CVs + LinkedIn Guide · Built & Downloaded',desc:'AI Quality CV · Online Teaching CV · LinkedIn Profile Guide. All corrections applied.',track:'INFRA',deadline:''},
-  {id:'q20',status:'done',name:'Assessment Practice Pack · Completed',desc:'13 worked examples + 7 practice questions. Logic · Data · Claim Validation · AI Evaluation · Customer Support QA.',track:'TRAIN',deadline:''},
-  {id:'q21',status:'done',name:'Abundance Research Package · Built',desc:'Survey · Proposal · Parental Consent (EN + FR) · Student Survey 12 questions.',track:'FIELD',deadline:''},
+  {id:'q17',status:'pending',name:'Learn Python Fundamentals',desc:'Variables, lists, loops, functions. Free resources: Python.org tutorial or freeCodeCamp. Target: 2 weeks of 30 min/day.',track:'DATA',deadline:''},
+  {id:'q18',status:'pending',name:'Learn pandas for Data Tables',desc:'The Python library for data tables. This is the actual tool you will use on the Pinnacle dataset. Practice with sample CSVs.',track:'DATA',deadline:''},
+  {id:'q19',status:'pending',name:'Learn SQL Basics',desc:'SELECT, WHERE, GROUP BY, JOIN. Free: SQLZoo or Mode Analytics. Data analytics jobs almost always require this.',track:'DATA',deadline:''},
+  {id:'q20',status:'pending',name:'Learn Data Visualisation in Python',desc:'matplotlib or seaborn. Turn your Pinnacle results into charts you can put in a portfolio. Target: 1 chart per week.',track:'DATA',deadline:''},
+  {id:'q21',status:'pending',name:'Master Excel / Google Sheets for Analysis',desc:'Pivot tables, VLOOKUP/XLOOKUP, basic charts. Faster to learn than Python and immediately useful in teaching and analytics.',track:'DATA',deadline:''},
+  {id:'q22',status:'pending',name:'Learn Git and GitHub Basics',desc:'git commit, push, pull via terminal. Real skill on data analyst job descriptions. Makes updating your site instant.',track:'INFRA',deadline:''},
+  {id:'q23',status:'pending',name:'Build a LinkedIn Content Habit',desc:'1 post per week about your journey (teaching + data + AI). Consistency attracts online teaching clients and remote recruiters.',track:'INFRA',deadline:''},
+  {id:'q24',status:'pending',name:'Get One Testimonial or Reference Letter',desc:'From Pinnacle African University or Abundance. Social proof is everything for online teaching platforms.',track:'TEACH',deadline:''},
+  {id:'q25',status:'pending',name:'Apply to Coursera / edX as Instructor',desc:'Your science background + teaching experience qualify you. Passive income potential alongside everything else.',track:'TEACH',deadline:''},
+  {id:'q26',status:'pending',name:'Write a Professional README',desc:'When you publish your data portfolio on GitHub, a well-written README is what makes it look professional vs amateur. High leverage skill.',track:'INFRA',deadline:''},
+  {id:'q27',status:'done',name:'Turing — Quality Analyst Multimodality · Applied',desc:'AI Quality CV submitted.',track:'AI QA',deadline:''},
+  {id:'q28',status:'done',name:'VeliBC — Local Tester (Benin Market) · Applied',desc:'iGaming QA role. Cyprus-registered, verified legitimate.',track:'AI QA',deadline:''},
+  {id:'q29',status:'done',name:'Both CVs + LinkedIn Guide · Built & Downloaded',desc:'AI Quality CV · Online Teaching CV · LinkedIn Profile Guide. All corrections applied.',track:'INFRA',deadline:''},
+  {id:'q30',status:'done',name:'Assessment Practice Pack · Completed',desc:'13 worked examples + 7 practice questions. Logic · Data · Claim Validation · AI Evaluation · Customer Support QA.',track:'TRAIN',deadline:''},
+  {id:'q31',status:'done',name:'Abundance Research Package · Built',desc:'Survey · Proposal · Parental Consent (EN + FR) · Student Survey 12 questions.',track:'FIELD',deadline:''},
 ];
 
 const DAILY_MISSIONS = [
-  // Data Analytics
   {id:'da1',text:'Complete 1 IBM SkillsBuild module or lesson',xp:60,track:'DATA',section:'data'},
   {id:'da2',text:'Write 10 lines of Python or 1 SQL query (beginner level)',xp:50,track:'DATA',section:'data'},
   {id:'da3',text:'Read 1 data analytics article or case study',xp:30,track:'DATA',section:'data'},
   {id:'da4',text:'Work on Pinnacle dataset: clean, anonymise, or analyse 1 column',xp:70,track:'DATA',section:'data'},
   {id:'da5',text:'Add 1 finding or chart to your portfolio case study',xp:60,track:'DATA',section:'data'},
-  // AI QA
   {id:'ai1',text:'Drill 2 transcription error categories (e.g. diarization, overlaps)',xp:50,track:'AI QA',section:'ai'},
   {id:'ai2',text:'Practice 1 customer support email QA scenario',xp:40,track:'AI QA',section:'ai'},
   {id:'ai3',text:'Review 1 AI output evaluation (accuracy · tone · completeness)',xp:40,track:'AI QA',section:'ai'},
   {id:'ai4',text:'Study 1 video summarization failure mode',xp:35,track:'AI QA',section:'ai'},
-  // Training & Applications
   {id:'tr1',text:'Log any new job application in your tracker',xp:30,track:'INFRA',section:'train'},
   {id:'tr2',text:'Spend 20 min on McKinsey Forward module',xp:50,track:'TRAIN',section:'train'},
   {id:'tr3',text:'Write 1 cover letter paragraph for a pending application',xp:45,track:'AI QA',section:'train'},
   {id:'tr4',text:'Check email for application results or follow-ups',xp:15,track:'INFRA',section:'train'},
-  // Portfolio & Field
   {id:'pf1',text:'Take 1 action toward Abundance school survey approval',xp:55,track:'FIELD',section:'portfolio'},
   {id:'pf2',text:'Update or add to your GitHub / portfolio page',xp:50,track:'DATA',section:'portfolio'},
   {id:'pf3',text:'Research 1 online teaching platform (Preply, Outschool, etc.)',xp:30,track:'TEACH',section:'portfolio'},
 ];
 
-let state = {
-  quests: [],
-  daily: {},
-  dailyDate: '',
-  totalXP: 0,
-};
-
+let state = { quests: [], daily: {}, dailyDate: '', totalXP: 0, log: [], dismissedNotifs: [] };
 let pendingDeleteId = null;
+let editingQuestId = null;
 
 function loadState(){
   try {
@@ -739,9 +671,11 @@ function loadState(){
     if(!state.quests || state.quests.length === 0) state.quests = JSON.parse(JSON.stringify(DEFAULT_QUESTS));
     if(!state.daily) state.daily = {};
     if(!state.totalXP) state.totalXP = 0;
+    if(!state.log) state.log = [];
+    if(!state.dismissedNotifs) state.dismissedNotifs = [];
     checkDailyReset();
   } catch(e) {
-    state = { quests: JSON.parse(JSON.stringify(DEFAULT_QUESTS)), daily:{}, dailyDate:'', totalXP:0 };
+    state = { quests: JSON.parse(JSON.stringify(DEFAULT_QUESTS)), daily:{}, dailyDate:'', totalXP:0, log:[], dismissedNotifs:[] };
   }
 }
 
@@ -752,7 +686,6 @@ function saveState(){
 function checkDailyReset(){
   const today = new Date().toDateString();
   if(state.dailyDate !== today){
-    // Don't auto-reset completions — let user decide. But update date if first launch
     if(!state.dailyDate) state.dailyDate = today;
   }
 }
@@ -762,10 +695,127 @@ function resetAll(){
   location.reload();
 }
 
-// ══════════════════════════════
-//  XP & RANK
-// ══════════════════════════════
+// LOG SYSTEM
+function addLog(action, detail){
+  const entry = { date: new Date().toISOString(), action: action, detail: detail || '' };
+  state.log.unshift(entry);
+  if(state.log.length > 100) state.log = state.log.slice(0, 100);
+  saveState();
+  if(document.getElementById('panel-log').classList.contains('shown')) renderLog();
+}
 
+function renderLog(){
+  const container = document.getElementById('activity-log');
+  if(!container) return;
+  if(state.log.length === 0){
+    container.innerHTML = '<div class="log-empty">— No activity recorded yet —</div>';
+    return;
+  }
+  container.innerHTML = state.log.map(entry => {
+    const d = new Date(entry.date);
+    const dateStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    return `<div class="log-entry">
+      <div class="log-date">${dateStr}</div>
+      <div><span class="log-action">${entry.action}</span>${entry.detail ? ' — ' + entry.detail : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+function clearLog(){
+  if(!confirm('Clear all activity log entries?')) return;
+  state.log = [];
+  saveState();
+  renderLog();
+}
+
+// NOTIFICATION SYSTEM
+function dismissNotif(id){
+  const el = document.querySelector(`[data-notif-id="${id}"]`);
+  if(el){
+    el.style.transition = 'opacity 0.3s, max-height 0.3s';
+    el.style.opacity = '0';
+    el.style.maxHeight = '0';
+    el.style.overflow = 'hidden';
+    setTimeout(() => el.remove(), 300);
+    if(!state.dismissedNotifs.includes(id)){
+      state.dismissedNotifs.push(id);
+      saveState();
+    }
+  }
+}
+
+function addNotification(){
+  const title = document.getElementById('newNotifTitle').value.trim();
+  const text = document.getElementById('newNotifText').value.trim();
+  if(!title || !text){ alert('Title and message required.'); return; }
+  const id = 'cn' + Date.now();
+  const container = document.getElementById('notif-container');
+  const div = document.createElement('div');
+  div.className = 'sys-notif';
+  div.setAttribute('data-notif-id', id);
+  div.innerHTML = `<div class="notif-head"><span>${title}</span><button class="notif-dismiss" onclick="dismissNotif('${id}')">Dismiss</button></div><div class="notif-text">${text}</div>`;
+  container.appendChild(div);
+  document.getElementById('newNotifTitle').value = '';
+  document.getElementById('newNotifText').value = '';
+  addLog('Posted alert', title);
+}
+
+// BACKUP SYSTEM
+const SystemSave = {
+  export(){
+    const data = { quests: state.quests, daily: state.daily, dailyDate: state.dailyDate, totalXP: state.totalXP, log: state.log, dismissedNotifs: state.dismissedNotifs, exportedAt: new Date().toISOString() };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'system-backup-' + new Date().toISOString().split('T')[0] + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('💾 Backup exported');
+  },
+  import(file){
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+        if(this.validate(data)){
+          if(!confirm('This will REPLACE all current data. Continue?')) return;
+          state.quests = data.quests || JSON.parse(JSON.stringify(DEFAULT_QUESTS));
+          state.daily = data.daily || {};
+          state.dailyDate = data.dailyDate || '';
+          state.totalXP = data.totalXP || 0;
+          state.log = data.log || [];
+          state.dismissedNotifs = data.dismissedNotifs || [];
+          saveState();
+          showToast('📁 Backup restored');
+          setTimeout(() => location.reload(), 800);
+        } else {
+          alert('Invalid backup file. Please use a valid System backup.');
+        }
+      } catch(err){
+        alert('Error reading file: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+    document.getElementById('importFile').value = '';
+  },
+  validate(data){
+    return data && Array.isArray(data.quests) && typeof data.totalXP === 'number' && typeof data.daily === 'object';
+  },
+  clear(){
+    if(!confirm('⚠ This will DELETE all your progress permanently.
+
+Export a backup first if you want to keep anything.
+
+Are you sure?')) return;
+    localStorage.removeItem('daniel_system_v2');
+    showToast('🗑 All data cleared');
+    setTimeout(() => location.reload(), 800);
+  }
+};
+
+// XP & RANK
 function getRank(xp){
   return RANKS.slice().reverse().find(r => xp >= r.min) || RANKS[0];
 }
@@ -777,8 +827,6 @@ function updateXPDisplay(){
   document.getElementById('xpFill').style.width = Math.min(fill,100)+'%';
   document.getElementById('xpVal').textContent = state.totalXP.toLocaleString() + ' XP' + (next ? ' · '+rank.name.split('—')[0].trim()+' → next at '+next.min.toLocaleString() : ' · MAX RANK');
   document.getElementById('rankDisplay').textContent = '◆ RANK '+rank.name+' ◆';
-
-  // ticker date
   const today = new Date();
   document.getElementById('ticker').textContent = '◈ SYSTEM ACTIVE · '+today.toDateString().toUpperCase()+' · RANK '+rank.name+' · KEEP ASCENDING ◈';
 }
@@ -798,14 +846,17 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'), 3000);
 }
 
-// ══════════════════════════════
-//  QUESTS RENDER
-// ══════════════════════════════
+// COLLAPSIBLE
+function toggleSection(header){
+  header.classList.toggle('collapsed');
+  const content = header.nextElementSibling;
+  if(content && content.classList.contains('collapsible-content')){
+    content.classList.toggle('collapsed');
+  }
+}
 
-const TRACK_TAG_CLASS = {
-  'AI QA':'tag-purple','DATA':'tag-gold','TEACH':'tag-blue',
-  'INFRA':'tag-blue','FIELD':'tag-green','RECRUIT':'tag-amber','TRAIN':'tag-green',
-};
+// QUESTS
+const TRACK_TAG_CLASS = {'AI QA':'tag-purple','DATA':'tag-gold','TEACH':'tag-blue','INFRA':'tag-blue','FIELD':'tag-green','RECRUIT':'tag-amber','TRAIN':'tag-green'};
 const STATUS_CLASS = {danger:'q-danger',active:'q-active',pending:'q-pending',done:'q-done'};
 const STATUS_ICON = {danger:'ti-alert-triangle',active:'ti-sword',pending:'ti-hourglass',done:'ti-circle-check'};
 const STATUS_COLOR = {danger:'var(--red)',active:'var(--glow)',pending:'var(--amber)',done:'var(--green)'};
@@ -831,6 +882,7 @@ function renderQuests(){
         </div>
         <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;align-items:flex-end;">
           ${q.status !== 'done' ? `<button class="tag tag-green" style="cursor:pointer;background:transparent;border:1px solid var(--green);color:var(--green);font-family:var(--display)" onclick="markDone('${q.id}')">✓ Done</button>` : ''}
+          <button class="tag" style="cursor:pointer;background:transparent;border:1px solid var(--glow);color:var(--glow);font-family:var(--display)" onclick="openEditModal('${q.id}')">✎ Edit</button>
           <button class="tag tag-red" style="cursor:pointer;background:transparent;border:1px solid var(--red);color:var(--red);font-family:var(--display)" onclick="openDeleteModal('${q.id}')">✕</button>
         </div>
       </div>
@@ -840,7 +892,14 @@ function renderQuests(){
 
 function markDone(id){
   const q = state.quests.find(x=>x.id===id);
-  if(q){ q.status='done'; earnXP(100); saveState(); renderQuests(); updateXPDisplay(); }
+  if(q){ 
+    q.status='done'; 
+    earnXP(100); 
+    addLog('Completed quest', q.name);
+    saveState(); 
+    renderQuests(); 
+    updateXPDisplay(); 
+  }
 }
 
 function addQuest(){
@@ -854,6 +913,7 @@ function addQuest(){
     deadline: document.getElementById('newQuestDeadline').value.trim(),
   };
   state.quests.unshift(q);
+  addLog('Created quest', q.name);
   saveState(); renderQuests();
   document.getElementById('newQuestName').value='';
   document.getElementById('newQuestDesc').value='';
@@ -863,24 +923,54 @@ function addQuest(){
 function openDeleteModal(id){ pendingDeleteId=id; document.getElementById('deleteModal').classList.add('open'); }
 function closeModal(){ document.getElementById('deleteModal').classList.remove('open'); pendingDeleteId=null; }
 function confirmDelete(){
-  if(pendingDeleteId){ state.quests=state.quests.filter(q=>q.id!==pendingDeleteId); saveState(); renderQuests(); }
+  if(pendingDeleteId){ 
+    const q = state.quests.find(x=>x.id===pendingDeleteId);
+    state.quests=state.quests.filter(q=>q.id!==pendingDeleteId); 
+    if(q) addLog('Deleted quest', q.name);
+    saveState(); renderQuests(); 
+  }
   closeModal();
 }
 
-// ══════════════════════════════
-//  DAILY RENDER
-// ══════════════════════════════
+// EDIT QUEST
+function openEditModal(id){
+  const q = state.quests.find(x=>x.id===id);
+  if(!q) return;
+  editingQuestId = id;
+  document.getElementById('editQuestName').value = q.name;
+  document.getElementById('editQuestDesc').value = q.desc;
+  document.getElementById('editQuestStatus').value = q.status;
+  document.getElementById('editQuestTrack').value = q.track;
+  document.getElementById('editQuestDeadline').value = q.deadline;
+  document.getElementById('editModal').classList.add('open');
+}
 
+function closeEditModal(){ document.getElementById('editModal').classList.remove('open'); editingQuestId=null; }
+
+function saveQuestEdit(){
+  if(!editingQuestId) return;
+  const q = state.quests.find(x=>x.id===editingQuestId);
+  if(!q) return;
+  const oldStatus = q.status;
+  q.name = document.getElementById('editQuestName').value.trim();
+  q.desc = document.getElementById('editQuestDesc').value.trim();
+  q.status = document.getElementById('editQuestStatus').value;
+  q.track = document.getElementById('editQuestTrack').value;
+  q.deadline = document.getElementById('editQuestDeadline').value.trim();
+  if(oldStatus !== 'done' && q.status === 'done') earnXP(100);
+  addLog('Edited quest', q.name);
+  saveState(); renderQuests(); updateXPDisplay();
+  closeEditModal();
+}
+
+// DAILY
 function todayKey(){ return new Date().toDateString(); }
 
 function renderDaily(){
   const today = todayKey();
   let dailyXP = 0;
-  DAILY_MISSIONS.forEach(m => {
-    if(state.daily[today] && state.daily[today][m.id]) dailyXP += m.xp;
-  });
+  DAILY_MISSIONS.forEach(m => { if(state.daily[today] && state.daily[today][m.id]) dailyXP += m.xp; });
   document.getElementById('dailyXPEarned').textContent = dailyXP+' XP';
-
   ['data','ai','train','portfolio'].forEach(section => {
     const container = document.getElementById('daily-'+section);
     const items = DAILY_MISSIONS.filter(m=>m.section===section);
@@ -904,9 +994,11 @@ function toggleDaily(id){
   if(state.daily[today][id]){
     delete state.daily[today][id];
     state.totalXP = Math.max(0, state.totalXP - mission.xp);
+    addLog('Unchecked daily mission', mission.text);
   } else {
     state.daily[today][id] = true;
     earnXP(mission.xp);
+    addLog('Completed daily mission', mission.text + ' (+' + mission.xp + ' XP)');
   }
   saveState(); renderDaily(); updateXPDisplay();
 }
@@ -914,7 +1006,6 @@ function toggleDaily(id){
 function resetDaily(){
   if(!confirm('Mark all daily missions as incomplete for today?')) return;
   const today = todayKey();
-  // Subtract today's XP
   if(state.daily[today]){
     Object.keys(state.daily[today]).forEach(id=>{
       const m = DAILY_MISSIONS.find(x=>x.id===id);
@@ -922,41 +1013,36 @@ function resetDaily(){
     });
     delete state.daily[today];
   }
+  addLog('Reset daily missions', 'New day');
   saveState(); renderDaily(); updateXPDisplay();
 }
 
-// ══════════════════════════════
-//  SKILL BARS ANIMATE
-// ══════════════════════════════
-
+// SKILL BARS
 function animateSkillBars(){
   document.querySelectorAll('.skill-fill[data-target]').forEach(el => {
     setTimeout(()=>{ el.style.width = el.dataset.target+'%'; }, 200);
   });
 }
 
-// ══════════════════════════════
-//  STREAK
-// ══════════════════════════════
-
+// STREAK
 function updateStreak(){
   const today = todayKey();
   const keys = Object.keys(state.daily).sort();
   let streak = 0;
   if(keys.includes(today)) streak++;
-  // simple: count consecutive days ending today
   const d = new Date(); d.setDate(d.getDate()-1);
   while(true){
-    if(keys.includes(d.toDateString())) { streak++; d.setDate(d.getDate()-1); }
+    const dayStr = d.toDateString();
+    if(keys.includes(dayStr)) { streak++; d.setDate(d.getDate()-1); }
     else break;
   }
-  document.getElementById('streakSub').textContent = streak+' day'+(streak!==1?'s':'')+' active';
+  const flameEl = document.getElementById('streakFlame');
+  const subEl = document.getElementById('streakSub');
+  if(flameEl) flameEl.textContent = streak > 0 ? '🔥' : '❄️';
+  if(subEl) subEl.textContent = streak + ' day' + (streak !== 1 ? 's' : '') + ' active';
 }
 
-// ══════════════════════════════
-//  NAV
-// ══════════════════════════════
-
+// NAV
 function showPanel(id, btn){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('shown'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -964,26 +1050,31 @@ function showPanel(id, btn){
   btn.classList.add('active');
   if(id==='skills') setTimeout(animateSkillBars, 100);
   if(id==='daily') renderDaily();
+  if(id==='log') renderLog();
 }
 
-// ══════════════════════════════
-//  INIT
-// ══════════════════════════════
-
+// INIT
 loadState();
 renderQuests();
 renderDaily();
+renderLog();
 updateXPDisplay();
 updateStreak();
 setTimeout(animateSkillBars, 300);
-
-// Animate XP bar on load
 setTimeout(()=>{
   const rank = getRank(state.totalXP);
   const next = RANKS[RANKS.indexOf(rank)+1];
   const fill = next ? Math.round(((state.totalXP - rank.min)/(next.max - rank.min))*100) : 100;
   document.getElementById('xpFill').style.width = Math.min(fill,100)+'%';
 }, 400);
+
+// Restore dismissed notifications
+if(state.dismissedNotifs && state.dismissedNotifs.length > 0){
+  state.dismissedNotifs.forEach(id => {
+    const el = document.querySelector(`[data-notif-id="${id}"]`);
+    if(el) el.remove();
+  });
+}
 </script>
 </body>
 </html>
